@@ -25,12 +25,12 @@ addon | version | maintainers | summary
 [hr_contract_employee_calendar_planning](hr_contract_employee_calendar_planning/) | 15.0.1.0.0 |  | Hr Contract Employee Calendar Planning
 [hr_contract_multi_job](hr_contract_multi_job/) | 15.0.1.0.0 |  | HR Contract Multi Jobs
 [hr_contract_reference](hr_contract_reference/) | 15.0.1.0.0 |  | HR Contract Reference
-[hr_course](hr_course/) | 15.0.1.1.0 |  | This module allows your to manage employee's training courses
+[hr_course](hr_course/) | 15.0.1.1.1 |  | This module allows your to manage employee's training courses
 [hr_department_code](hr_department_code/) | 15.0.1.0.0 |  | HR department code
 [hr_emergency_contact](hr_emergency_contact/) | 15.0.1.0.0 |  | HR Emergency Contact
 [hr_employee_age](hr_employee_age/) | 15.0.1.0.0 |  | Age field for employee
 [hr_employee_birth_name](hr_employee_birth_name/) | 15.0.1.0.1 |  | Employee Birth Name
-[hr_employee_calendar_planning](hr_employee_calendar_planning/) | 15.0.1.1.4 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Employee Calendar Planning
+[hr_employee_calendar_planning](hr_employee_calendar_planning/) | 15.0.1.1.7 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Employee Calendar Planning
 [hr_employee_digitized_signature](hr_employee_digitized_signature/) | 15.0.1.0.0 | [![newtratip](https://github.com/newtratip.png?size=30px)](https://github.com/newtratip) | Employee Digitized Signature
 [hr_employee_document](hr_employee_document/) | 15.0.1.0.0 |  | Documents attached to the employee profile
 [hr_employee_firstname](hr_employee_firstname/) | 15.0.1.0.0 |  | Adds First Name to Employee
