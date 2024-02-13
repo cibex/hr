@@ -120,15 +120,23 @@ class HrEmployee(models.Model):
             self.resource_id.calendar_id.hours_per_day = self.calendar_ids[
                 0
             ].calendar_id.hours_per_day
-            # set global leaves
-            self.resource_id.calendar_id.global_leave_ids.unlink()
+            # set future global leaves
+            self.resource_id.calendar_id.global_leave_ids.filtered(
+                lambda x: x.date_from >= fields.Datetime.now()
+            ).unlink()
             self.copy_global_leaves()
 
     def copy_global_leaves(self):
         self.ensure_one()
         leave_ids = []
-        for calendar in self.calendar_ids:
-            global_leaves = calendar.calendar_id.global_leave_ids
+        # only set future global leaves
+        # to not interfere with existing records
+        for calendar in self.calendar_ids.filtered(
+            lambda x: not x.date_end or x.date_end >= fields.Date.today()
+        ):
+            global_leaves = calendar.calendar_id.global_leave_ids.filtered(
+                lambda x: x.date_from >= fields.Datetime.now()
+            )
             if calendar.date_start:
                 global_leaves = global_leaves.filtered(
                     lambda x: x.date_from.date() >= calendar.date_start
