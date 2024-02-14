@@ -121,10 +121,14 @@ class HrEmployee(models.Model):
                 0
             ].calendar_id.hours_per_day
             # set future global leaves
-            self.resource_id.calendar_id.global_leave_ids.filtered(
+            context = dict(self._context)
+            context.update({"skip_reevaluate_leaves": True})
+            self.with_context(
+                context
+            ).resource_id.calendar_id.global_leave_ids.filtered(
                 lambda x: x.date_from >= fields.Datetime.now()
             ).unlink()
-            self.copy_global_leaves()
+            self.with_context(context).copy_global_leaves()
 
     def copy_global_leaves(self):
         self.ensure_one()
