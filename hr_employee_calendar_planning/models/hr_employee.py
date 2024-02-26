@@ -120,27 +120,14 @@ class HrEmployee(models.Model):
             self.resource_id.calendar_id.hours_per_day = self.calendar_ids[
                 0
             ].calendar_id.hours_per_day
-            # set future global leaves
-            context = dict(self._context)
-            context.update({"skip_reevaluate_leaves": True})
-            self.with_context(
-                context
-            ).resource_id.calendar_id.global_leave_ids.filtered(
-                lambda x: x.date_from >= fields.Datetime.now()
-            ).unlink()
-            self.with_context(context).copy_global_leaves()
+            # set global leaves
+            self.copy_global_leaves()
 
     def copy_global_leaves(self):
         self.ensure_one()
         leave_ids = []
-        # only set future global leaves
-        # to not interfere with existing records
-        for calendar in self.calendar_ids.filtered(
-            lambda x: not x.date_end or x.date_end >= fields.Date.today()
-        ):
-            global_leaves = calendar.calendar_id.global_leave_ids.filtered(
-                lambda x: x.date_from >= fields.Datetime.now()
-            )
+        for calendar in self.calendar_ids:
+            global_leaves = calendar.calendar_id.global_leave_ids
             if calendar.date_start:
                 global_leaves = global_leaves.filtered(
                     lambda x: x.date_from.date() >= calendar.date_start
@@ -152,9 +139,28 @@ class HrEmployee(models.Model):
             leave_ids += global_leaves.ids
         vals = [
             leave.copy_data({"calendar_id": self.resource_id.calendar_id.id})[0]
-            for leave in self.env["resource.calendar.leaves"].browse(leave_ids)
+            for leave in self.env["resource.calendar.leaves"].search(
+                [("id", "in", leave_ids)], order="date_from asc"
+            )
         ]
-        return self.env["resource.calendar.leaves"].create(vals).ids
+        existing_leaves_mapping = {
+            e.date_from: e for e in self.resource_id.calendar_id.global_leave_ids
+        }
+        requested_create_dates = [(e.get("date_from"), e.get("date_to")) for e in vals]
+        new_vals = [
+            v
+            for v in vals
+            if not (
+                v.get("date_from") in existing_leaves_mapping
+                and v.get("date_to")
+                == existing_leaves_mapping[v.get("date_from")].date_to
+            )
+        ]
+        to_unlink = self.resource_id.calendar_id.global_leave_ids.filtered(
+            lambda x: (x.date_from, x.date_to) not in requested_create_dates
+        )
+        to_unlink.unlink()
+        return self.env["resource.calendar.leaves"].create(new_vals).ids
 
     def regenerate_calendar(self):
         for item in self:
