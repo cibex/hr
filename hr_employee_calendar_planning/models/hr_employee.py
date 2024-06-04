@@ -114,7 +114,8 @@ class HrEmployee(models.Model):
                 .id
             )
         else:
-            self.resource_calendar_id.attendance_ids = vals_list
+            if vals_list:
+                self.resource_calendar_id.attendance_ids = vals_list
         # Set the hours per day to the last (top date end) calendar line to apply
         if self.calendar_ids:
             self.resource_id.calendar_id.hours_per_day = self.calendar_ids[
