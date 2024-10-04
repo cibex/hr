@@ -32,6 +32,7 @@ addon | version | maintainers | summary
 [hr_employee_document](hr_employee_document/) | 16.0.1.0.1 |  | Documents attached to the employee profile
 [hr_employee_firstname](hr_employee_firstname/) | 16.0.1.0.2 | [![Savoir-faire Linux](https://github.com/Savoir-faire Linux.png?size=30px)](https://github.com/Savoir-faire Linux) [![luisg123v](https://github.com/luisg123v.png?size=30px)](https://github.com/luisg123v) | Adds First Name to Employee
 [hr_employee_group_overview_readonly](hr_employee_group_overview_readonly/) | 16.0.1.0.0 |  | HR Employee Group Overview Readonly
+[hr_employee_id](hr_employee_id/) | 16.0.1.0.0 |  | Employee ID
 [hr_employee_lastnames](hr_employee_lastnames/) | 16.0.1.0.2 | [![luisg123v](https://github.com/luisg123v.png?size=30px)](https://github.com/luisg123v) | Split Name in First Name, Father's Last Name and Mother's Last Name
 [hr_employee_medical_examination](hr_employee_medical_examination/) | 16.0.1.0.0 |  | Adds information about employee's medical examinations
 [hr_employee_partner_external](hr_employee_partner_external/) | 16.0.1.0.0 |  | Associate an external Partner to Employee
@@ -40,7 +41,6 @@ addon | version | maintainers | summary
 [hr_employee_relative](hr_employee_relative/) | 16.0.1.0.0 |  | Allows storing information about employee's family
 [hr_employee_service](hr_employee_service/) | 16.0.1.0.0 |  | Employee service information & duration
 [hr_employee_ssn](hr_employee_ssn/) | 16.0.1.0.0 |  | View/edit employee's SSN & SIN fields
-[hr_holidays_settings](hr_holidays_settings/) | 16.0.1.0.0 |  | Enables Settings Form for HR Holidays.
 [hr_personal_equipment_request](hr_personal_equipment_request/) | 16.0.1.0.0 |  | This addon allows to manage employee personal equipment
 [hr_professional_category](hr_professional_category/) | 16.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | HR Professional Category
 [hr_recruitment_torecruit](hr_recruitment_torecruit/) | 16.0.1.1.0 |  | Age field for employee
