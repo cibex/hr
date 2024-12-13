@@ -38,7 +38,7 @@ class HrEmployee(models.Model):
             "name": _("Equipment Request"),
             "type": "ir.actions.act_window",
             "res_model": "hr.personal.equipment.request",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "context": {"group_by": "state"},
             "domain": [("id", "in", self.equipment_request_ids.ids)],
         }
@@ -50,6 +50,6 @@ class HrEmployee(models.Model):
             "type": "ir.actions.act_window",
             "res_model": "hr.personal.equipment",
             "context": {"group_by": "state"},
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "domain": [("id", "in", self.personal_equipment_ids.ids)],
         }

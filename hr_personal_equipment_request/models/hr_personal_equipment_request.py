@@ -65,6 +65,6 @@ class HrPersonalEquipmentRequest(models.Model):
             "name": _("Allocations"),
             "type": "ir.actions.act_window",
             "res_model": "hr.personal.equipment",
-            "view_mode": "tree,form",
+            "view_mode": "list,form",
             "domain": [("id", "in", self.line_ids.ids)],
         }
