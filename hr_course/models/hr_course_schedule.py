@@ -11,6 +11,11 @@ class HrCourseSchedule(models.Model):
 
     name = fields.Char(required=True, tracking=True)
     course_id = fields.Many2one("hr.course", string="Course", required=True)
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        string="Company",
+        related="course_id.company_id",
+    )
 
     start_date = fields.Date(
         tracking=True,
@@ -49,7 +54,7 @@ class HrCourseSchedule(models.Model):
     instructor_ids = fields.Many2many("res.partner", string="Instructor")
     place = fields.Char()
 
-    attendant_ids = fields.Many2many("hr.employee")
+    attendant_ids = fields.Many2many("hr.employee", domain="[('company_id', '=', company_id)]")
     course_attendee_ids = fields.One2many(
         "hr.course.attendee", inverse_name="course_schedule_id"
     )

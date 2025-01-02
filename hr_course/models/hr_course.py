@@ -26,6 +26,11 @@ class HRCourseAttendee(models.Model):
         default="pending",
     )
     active = fields.Boolean(default=True, readonly=True)
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        string="Company",
+        related="course_schedule_id.company_id",
+    )
 
     def _remove_from_course(self):
         return [(1, self.id, {"active": False})]
@@ -38,7 +43,10 @@ class HrCourse(models.Model):
 
     name = fields.Char(required=True, tracking=True)
     category_id = fields.Many2one(
-        "hr.course.category", string="Category", required=True
+        "hr.course.category",
+        domain="[('company_ids', '=', company_id)]",
+        string="Category",
+        required=True,
     )
 
     permanence = fields.Boolean(string="Has Permanence", default=False, tracking=True)
@@ -53,6 +61,13 @@ class HrCourse(models.Model):
         "hr.course.schedule", inverse_name="course_id"
     )
 
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        string="Company",
+        default=lambda self: self.env.company,
+        required=True,
+    )
+
     @api.onchange("permanence")
     def _onchange_permanence(self):
         self.permanence_time = False
@@ -63,5 +78,13 @@ class HRCourseCategory(models.Model):
     _description = "Course Category"
 
     name = fields.Char(string="Course category", required=True)
+    company_ids = fields.Many2many(
+        comodel_name="res.company",
+        string="Companies",
+        default=lambda self: self.env.company,
+        required=True,
+    )
 
-    _sql_constraints = [("name_uniq", "unique (name)", "Category already exists !")]
+    _sql_constraints = [
+        ("name_company_uniq", "unique (name, company_ids)", "Category already exists !")
+    ]

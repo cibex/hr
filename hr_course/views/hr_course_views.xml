@@ -15,7 +15,12 @@
                     </div>
                     <group>
                         <group>
+                            <field name="company_id" invisible="1" />
                             <field name="category_id" />
+                            <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
                             <field name="permanence" />
                             <field name="permanence_time" invisible="not permanence" />
                         </group>
@@ -61,7 +66,9 @@
         <field name="arch" type="xml">
             <list>
                 <field name="name" />
+                <field name="company_id" invisible="1" />
                 <field name="category_id" />
+                <field name="company_id" groups="base.group_multi_company" />
                 <field name="content" />
                 <field name="objective" />
             </list>
