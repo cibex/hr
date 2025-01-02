@@ -87,6 +87,10 @@
                         <group>
                             <field name="course_id" />
                             <field
+                                name="company_id"
+                                groups="base.group_multi_company"
+                            />
+                            <field
                                 name="cost"
                                 widget="monetary"
                                 options="{'currency_field': 'currency_id'}"
@@ -111,6 +115,7 @@
                             string="Attendees"
                             attrs="{'invisible': [('state','not in',['draft', 'waiting_attendees','cancelled'])]}"
                         >
+                            <field name="company_id" invisible="1" />
                             <field name="attendant_ids" />
                         </page>
                         <page

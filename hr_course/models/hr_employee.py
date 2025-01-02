@@ -12,6 +12,7 @@ class HrEmployee(models.Model):
         "hr.course.attendee",
         "employee_id",
         string="Courses",
+        domain="[('company_id', 'in', company_id)]",
         readonly=True,
     )
 

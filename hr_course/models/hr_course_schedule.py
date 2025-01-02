@@ -11,6 +11,11 @@ class HrCourseSchedule(models.Model):
 
     name = fields.Char(required=True, tracking=True)
     course_id = fields.Many2one("hr.course", string="Course", required=True)
+    company_id = fields.Many2one(
+        comodel_name="res.company",
+        string="Company",
+        related="course_id.company_id",
+    )
 
     start_date = fields.Date(
         readonly=True,
@@ -59,6 +64,7 @@ class HrCourseSchedule(models.Model):
         "hr.employee",
         readonly=True,
         states={"waiting_attendees": [("readonly", False)]},
+        domain="[('company_id', '=', company_id)]",
     )
     course_attendee_ids = fields.One2many(
         "hr.course.attendee",
