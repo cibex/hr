@@ -2,6 +2,8 @@
 # Copyright 2021-2023 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from datetime import date, timedelta
+
 from odoo import exceptions, fields
 from odoo.tests import common, new_test_user
 
@@ -454,3 +456,68 @@ class TestHrEmployeeCalendarPlanning(common.TransactionCase):
             ]
         )
         self.assertEqual(len(employees), 2)
+
+    def test_get_current_hours_per_day(self):
+        employee_calendar1 = self.env["hr.employee.calendar"].create(
+            {
+                "date_start": date.today() - timedelta(days=2),
+                "date_end": date.today() + timedelta(days=2),
+                "employee_id": self.employee.id,
+                "calendar_id": self.calendar1.id,
+            }
+        )
+        self.assertEqual(
+            self.employee.resource_calendar_id.hours_per_day,
+            self.calendar1.hours_per_day,
+        )
+        self.calendar2.attendance_ids[
+            -1
+        ].unlink()  # Make hours_per_day different for calendar 1 and 2
+        employee_calendar2 = self.env["hr.employee.calendar"].create(
+            {
+                "date_start": date.today() + timedelta(days=3),
+                "date_end": date.today() + timedelta(days=5),
+                "employee_id": self.employee.id,
+                "calendar_id": self.calendar2.id,
+            }
+        )
+        self.assertEqual(
+            self.employee.resource_calendar_id.hours_per_day,
+            self.calendar1.hours_per_day,
+        )
+        employee_calendar1.write(
+            {
+                "date_start": employee_calendar1.date_start + timedelta(days=5),
+                "date_end": employee_calendar1.date_start + timedelta(days=7),
+            }
+        )
+        employee_calendar2.write(
+            {
+                "date_start": date.today() - timedelta(days=2),
+                "date_end": None,
+            }
+        )
+        self.assertEqual(
+            self.employee.resource_calendar_id.hours_per_day,
+            self.calendar2.hours_per_day,
+        )
+        employee_calendar1.write(
+            {
+                "date_start": None,
+                "date_end": None,
+            }
+        )
+        self.assertEqual(
+            self.employee.resource_calendar_id.hours_per_day,
+            self.calendar2.hours_per_day,
+        )
+        employee_calendar2.write(
+            {
+                "date_start": date.today() + timedelta(days=2),
+                "date_end": None,
+            }
+        )
+        self.assertEqual(
+            self.employee.resource_calendar_id.hours_per_day,
+            self.calendar1.hours_per_day,
+        )
