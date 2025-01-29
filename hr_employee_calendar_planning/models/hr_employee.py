@@ -2,6 +2,8 @@
 # Copyright 2022-2023 Tecnativa - Víctor Martínez
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 
+from datetime import date
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 from odoo.tools import config
@@ -57,6 +59,42 @@ class HrEmployee(models.Model):
                 (0, 0, {"calendar_id": self.env.company.resource_calendar_id.id}),
             ]
         return vals
+
+    def _get_current_hours_per_day(self):
+        """
+        Checks all calendars and uses the most specific first (date_start and date_end are set).
+        If no calendar matches it checks for calendars where no date_end is set.
+        If no calendar matches it checks for calendars where no date_start is set.
+        If no calendar matches it checks for calenders with neither date_start nor date_end.
+        It returns the hours_per_day of the first matching resource calendar. If no calendar matches or no calendar exists -1 is returned.
+        :return: the current valid hours per day
+        """
+        if not self.calendar_ids:
+            return -1
+        today = date.today()
+        relevant_calendars = self.calendar_ids.filtered(
+            lambda x: x.date_start
+            and x.date_end
+            and x.date_start <= today <= x.date_end
+        )
+        if relevant_calendars:
+            return relevant_calendars[0].calendar_id.hours_per_day
+        relevant_calendars = self.calendar_ids.filtered(
+            lambda x: x.date_start and not x.date_end and x.date_start <= today
+        )
+        if relevant_calendars:
+            return relevant_calendars[0].calendar_id.hours_per_day
+        relevant_calendars = self.calendar_ids.filtered(
+            lambda x: not x.date_start and x.date_end and today <= x.date_end
+        )
+        if relevant_calendars:
+            return relevant_calendars[0].calendar_id.hours_per_day
+        relevant_calendars = self.calendar_ids.filtered(
+            lambda x: not x.date_start and not x.date_end
+        )
+        if relevant_calendars:
+            return relevant_calendars[0].calendar_id.hours_per_day
+        return -1
 
     def _regenerate_calendar(self):
         self.ensure_one()
@@ -116,11 +154,11 @@ class HrEmployee(models.Model):
         else:
             if vals_list:
                 self.resource_calendar_id.attendance_ids = vals_list
-        # Set the hours per day to the last (top date end) calendar line to apply
+        # Set the hours per day to the value of the current resource calendar
+        current_hours_per_day = self._get_current_hours_per_day()
+        if current_hours_per_day >= 0:
+            self.resource_id.calendar_id.hours_per_day = current_hours_per_day
         if self.calendar_ids:
-            self.resource_id.calendar_id.hours_per_day = self.calendar_ids[
-                0
-            ].calendar_id.hours_per_day
             # set global leaves
             self.copy_global_leaves()
 
@@ -162,6 +200,13 @@ class HrEmployee(models.Model):
         )
         to_unlink.unlink()
         return self.env["resource.calendar.leaves"].create(new_vals).ids
+
+    def cron_recompute_hours_per_day(self):
+        employees = self.search([])
+        for employee in employees:
+            current_hours_per_day = employee._get_current_hours_per_day()
+            if current_hours_per_day >= 0:
+                employee.resource_id.calendar_id.hours_per_day = current_hours_per_day
 
     def regenerate_calendar(self):
         for item in self:

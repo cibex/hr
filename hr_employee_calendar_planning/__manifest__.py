@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl).
 {
     "name": "Employee Calendar Planning",
-    "version": "16.0.1.1.8",
+    "version": "16.0.1.1.10",
     "category": "Human Resources",
     "website": "https://github.com/OCA/hr",
     "author": "Tecnativa,Odoo Community Association (OCA)",
@@ -11,6 +11,7 @@
     "depends": ["hr"],
     "data": [
         "security/ir.model.access.csv",
+        "data/data.xml",
         "views/hr_employee_views.xml",
         "views/resource_calendar_views.xml",
     ],
