@@ -29,7 +29,7 @@ addon | version | maintainers | summary
 [hr_employee_age](hr_employee_age/) | 16.0.1.0.1 |  | Age field for employee
 [hr_employee_birth_name](hr_employee_birth_name/) | 16.0.1.0.0 |  | Employee Birth Name
 [hr_employee_birthday_mail](hr_employee_birthday_mail/) | 16.0.1.1.0 |  | Automating birthday mail messages and fostering for a positive work environment.
-[hr_employee_calendar_planning](hr_employee_calendar_planning/) | 16.0.1.1.9 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Employee Calendar Planning
+[hr_employee_calendar_planning](hr_employee_calendar_planning/) | 16.0.1.1.10 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) [![pedrobaeza](https://github.com/pedrobaeza.png?size=30px)](https://github.com/pedrobaeza) | Employee Calendar Planning
 [hr_employee_digitized_signature](hr_employee_digitized_signature/) | 16.0.1.0.0 | [![newtratip](https://github.com/newtratip.png?size=30px)](https://github.com/newtratip) | Employee Digitized Signature
 [hr_employee_document](hr_employee_document/) | 16.0.1.0.1 |  | Documents attached to the employee profile
 [hr_employee_document_from_applicant](hr_employee_document_from_applicant/) | 16.0.1.0.0 | [![ursais](https://github.com/ursais.png?size=30px)](https://github.com/ursais) | HR Employee Document from Applicant
@@ -47,8 +47,11 @@ addon | version | maintainers | summary
 [hr_employee_service_contract](hr_employee_service_contract/) | 16.0.1.0.0 |  | Employee service information & duration based on employee's contracts
 [hr_employee_ssn](hr_employee_ssn/) | 16.0.1.0.0 |  | View/edit employee's SSN & SIN fields
 [hr_holidays_team_manager](hr_holidays_team_manager/) | 16.0.1.0.0 |  | HR Holidays Team Manager
+[hr_job_category](hr_job_category/) | 16.0.1.0.0 |  | Adds tags to employee through contract and job position
 [hr_personal_equipment_request](hr_personal_equipment_request/) | 16.0.1.0.0 |  | This addon allows to manage employee personal equipment
+[hr_personal_equipment_request_tier_validation](hr_personal_equipment_request_tier_validation/) | 16.0.1.0.0 |  | Enables tier validation from hr.personal.equipment.request
 [hr_personal_equipment_stock](hr_personal_equipment_stock/) | 16.0.1.0.0 |  | This addon allows to integrate hr_personal_equipment_request with stock
+[hr_personal_equipment_variant_configurator](hr_personal_equipment_variant_configurator/) | 16.0.1.0.0 |  | Manage variants of personal equipment
 [hr_professional_category](hr_professional_category/) | 16.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | HR Professional Category
 [hr_recruitment_torecruit](hr_recruitment_torecruit/) | 16.0.1.1.0 |  | Age field for employee
 
