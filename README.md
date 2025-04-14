@@ -21,9 +21,10 @@ Available addons
 ----------------
 addon | version | maintainers | summary
 --- | --- | --- | ---
-[hr_contract_employee_calendar_planning](hr_contract_employee_calendar_planning/) | 16.0.1.0.0 |  | Hr Contract Employee Calendar Planning
+[hr_contract_employee_calendar_planning](hr_contract_employee_calendar_planning/) | 16.0.1.0.1 |  | Hr Contract Employee Calendar Planning
+[hr_contract_multi_job](hr_contract_multi_job/) | 16.0.1.0.0 |  | HR Contract Multi Jobs
 [hr_contract_reference](hr_contract_reference/) | 16.0.1.0.0 |  | HR Contract Reference
-[hr_course](hr_course/) | 16.0.1.1.1 |  | This module allows your to manage employee's training courses
+[hr_course](hr_course/) | 16.0.1.1.2 |  | This module allows your to manage employee's training courses
 [hr_course_survey](hr_course_survey/) | 16.0.1.0.0 |  | Evaluate a course using a Schedule
 [hr_department_code](hr_department_code/) | 16.0.1.0.0 |  | HR department code
 [hr_employee_age](hr_employee_age/) | 16.0.1.0.1 |  | Age field for employee
@@ -48,6 +49,7 @@ addon | version | maintainers | summary
 [hr_employee_ssn](hr_employee_ssn/) | 16.0.1.0.0 |  | View/edit employee's SSN & SIN fields
 [hr_holidays_team_manager](hr_holidays_team_manager/) | 16.0.1.0.0 |  | HR Holidays Team Manager
 [hr_job_category](hr_job_category/) | 16.0.1.0.1 |  | Adds tags to employee through contract and job position
+[hr_org_chart_overview](hr_org_chart_overview/) | 16.0.1.0.0 |  | Organizational Chart Overview
 [hr_personal_equipment_request](hr_personal_equipment_request/) | 16.0.1.0.0 |  | This addon allows to manage employee personal equipment
 [hr_personal_equipment_request_tier_validation](hr_personal_equipment_request_tier_validation/) | 16.0.1.0.0 |  | Enables tier validation from hr.personal.equipment.request
 [hr_personal_equipment_stock](hr_personal_equipment_stock/) | 16.0.1.0.0 |  | This addon allows to integrate hr_personal_equipment_request with stock

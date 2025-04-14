@@ -9,6 +9,7 @@ setuptools.setup(
     version=version,
     install_requires=[
         'odoo-addon-hr_contract_employee_calendar_planning>=16.0dev,<16.1dev',
+        'odoo-addon-hr_contract_multi_job>=16.0dev,<16.1dev',
         'odoo-addon-hr_contract_reference>=16.0dev,<16.1dev',
         'odoo-addon-hr_course>=16.0dev,<16.1dev',
         'odoo-addon-hr_course_survey>=16.0dev,<16.1dev',
@@ -35,6 +36,7 @@ setuptools.setup(
         'odoo-addon-hr_employee_ssn>=16.0dev,<16.1dev',
         'odoo-addon-hr_holidays_team_manager>=16.0dev,<16.1dev',
         'odoo-addon-hr_job_category>=16.0dev,<16.1dev',
+        'odoo-addon-hr_org_chart_overview>=16.0dev,<16.1dev',
         'odoo-addon-hr_personal_equipment_request>=16.0dev,<16.1dev',
         'odoo-addon-hr_personal_equipment_request_tier_validation>=16.0dev,<16.1dev',
         'odoo-addon-hr_personal_equipment_stock>=16.0dev,<16.1dev',
