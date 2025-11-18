@@ -80,14 +80,14 @@
                 decoration-muted="state=='cancelled'"
                 decoration-danger="state=='expired'"
             >
-                <field name="name" invisible="1" />
+                <field name="name" column_invisible="1" />
                 <field name="product_id" />
                 <field name="employee_id" groups="hr.group_hr_user" />
                 <field name="quantity" />
                 <field name="product_uom_id" />
                 <field name="start_date" />
                 <field name="state" />
-                <field name="equipment_request_id" invisible="1" />
+                <field name="equipment_request_id" column_invisible="1" />
             </list>
         </field>
     </record>

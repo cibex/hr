@@ -36,7 +36,6 @@
                             icon="fa-briefcase"
                             invisible="allocations_count == 0"
                         >
-                            <!-- TODO: IN version 14.0 (with fa 5.0) we could put a t-shirt as icon -->
                             <field
                                 name="allocations_count"
                                 string="Allocations"
@@ -68,8 +67,11 @@
                                         groups="hr.group_hr_user"
                                     />
                                     <field name="state" readonly="1" />
-                                    <field name="equipment_request_id" invisible="1" />
-                                    <field name="employee_id" invisible="1" />
+                                    <field
+                                        name="equipment_request_id"
+                                        column_invisible="True"
+                                    />
+                                    <field name="employee_id" column_invisible="True" />
                                 </list>
                                 <form>
                                     <header>
