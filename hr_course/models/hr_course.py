@@ -2,6 +2,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 
 
 class HRCourseAttendee(models.Model):
@@ -85,6 +86,11 @@ class HRCourseCategory(models.Model):
         required=True,
     )
 
-    _sql_constraints = [
-        ("name_company_uniq", "unique (name, company_ids)", "Category already exists !")
-    ]
+    @api.constrains('name', 'company_ids')
+    def _check_name(self):
+        all_categories = self.env['hr.course.category'].search([])
+        for record in self:
+            for company in record.company_ids:
+                to_check = all_categories.filtered(lambda c: company.id in c.company_ids.ids and record.name == c.name and c.id != record.id)
+                if to_check.exists():
+                    raise ValidationError('Category already exists')
