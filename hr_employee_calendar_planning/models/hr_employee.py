@@ -48,10 +48,25 @@ class HrEmployee(models.Model):
         copy=True,
     )
 
+    def _get_planning_calendars(self, from_date, to_date):
+        self.ensure_one()
+        # We need to use sudo to avoid the error  odoo.exceptions.AccessError:
+        # The fields “calendar_ids”, which you are trying to read, are not
+        # available for employee public profiles.
+        return self.sudo().calendar_ids.filtered(
+            lambda x: (not x.date_start or (from_date and x.date_start <= from_date))
+            and (not x.date_end or (to_date and x.date_end >= to_date))
+        )
+
     @api.model
     def default_get(self, fields):
         """Set calendar_ids default value to cover all use cases."""
         vals = super().default_get(fields)
+        test_condition = not config["test_enable"] or self.env.context.get(
+            "test_hr_employee_calendar_planning"
+        )
+        if not test_condition:
+            return vals
         if "calendar_ids" in fields and not vals.get("calendar_ids"):
             vals["calendar_ids"] = [
                 (0, 0, {"calendar_id": self.env.company.resource_calendar_id.id}),
@@ -97,22 +112,18 @@ class HrEmployee(models.Model):
                     vals_list.append((0, 0, data))
         # Autogenerate
         if not self.resource_id.calendar_id.auto_generate:
-            self.resource_id.calendar_id = (
-                self.env["resource.calendar"]
-                .create(
-                    {
-                        "active": False,
-                        "company_id": self.company_id.id,
-                        "auto_generate": True,
-                        "name": _("Auto generated calendar for employee")
-                        + f" {self.name}",
-                        "attendance_ids": vals_list,
-                        "two_weeks_calendar": two_weeks,
-                        "tz": self.tz,  # take employee timezone as default
-                    }
-                )
-                .id
+            calendar = self.env["resource.calendar"].create(
+                {
+                    "active": False,
+                    "company_id": self.company_id.id,
+                    "auto_generate": True,
+                    "name": _("Auto generated calendar for employee") + f" {self.name}",
+                    "attendance_ids": vals_list,
+                    "two_weeks_calendar": two_weeks,
+                    "tz": self.tz,  # take employee timezone as default
+                }
             )
+            self.resource_calendar_id = self.resource_id.calendar_id = calendar
         else:
             self.resource_calendar_id.attendance_ids = vals_list
         # Set the hours per day to the last (top date end) calendar line to apply
@@ -177,10 +188,14 @@ class HrEmployee(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         res = super().create(vals_list)
+        test_condition = not config["test_enable"] or self.env.context.get(
+            "test_hr_employee_calendar_planning"
+        )
+        if not test_condition:
+            return res
         # Avoid creating an employee without calendars
         if (
             not self.env.context.get("skip_employee_calendars_required")
-            and not config["test_enable"]
             and not self.env.context.get("install_mode")
             and res.filtered(lambda x: not x.calendar_ids)
         ):
