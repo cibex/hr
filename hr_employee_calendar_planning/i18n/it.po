@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 15.0\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2026-09-16 09:46+0000\n"
+"PO-Revision-Date: 2026-10-01 15:46+0000\n"
 "Last-Translator: mymage <stefano.consolaro@mymage.it>\n"
 "Language-Team: none\n"
 "Language: it\n"
@@ -65,6 +65,11 @@ msgid ""
 "Average hours per day a resource is supposed to work with this calendar."
 msgstr ""
 "Ore medie per giorno che si suppone lavori una risorsa con questo calendario."
+
+#. module: hr_employee_calendar_planning
+#: model:ir.model,name:hr_employee_calendar_planning.model_hr_employee_base
+msgid "Basic Employee"
+msgstr "Dipendente base"
 
 #. module: hr_employee_calendar_planning
 #: model:ir.model.fields,field_description:hr_employee_calendar_planning.field_hr_employee__calendar_ids
@@ -150,6 +155,20 @@ msgstr ""
 "lavorato senza eliminarlo."
 
 #. module: hr_employee_calendar_planning
+#: model:ir.model.fields,field_description:hr_employee_calendar_planning.field_hr_employee__is_flexible
+#: model:ir.model.fields,field_description:hr_employee_calendar_planning.field_hr_employee_base__is_flexible
+#: model:ir.model.fields,field_description:hr_employee_calendar_planning.field_hr_employee_public__is_flexible
+msgid "Is Flexible"
+msgstr "È flessibile"
+
+#. module: hr_employee_calendar_planning
+#: model:ir.model.fields,field_description:hr_employee_calendar_planning.field_hr_employee__is_fully_flexible
+#: model:ir.model.fields,field_description:hr_employee_calendar_planning.field_hr_employee_base__is_fully_flexible
+#: model:ir.model.fields,field_description:hr_employee_calendar_planning.field_hr_employee_public__is_fully_flexible
+msgid "Is Fully Flexible"
+msgstr "È completamente flessibile"
+
+#. module: hr_employee_calendar_planning
 #: model:ir.model.fields,field_description:hr_employee_calendar_planning.field_hr_employee_calendar__write_uid
 msgid "Last Updated by"
 msgstr "Ultimo aggiornamento di"
@@ -197,6 +216,13 @@ msgstr "Ore richieste a tempo pieno salvate"
 #: model:ir.model.fields,field_description:hr_employee_calendar_planning.field_resource_calendar__stored_hours_per_day
 msgid "Stored Hours Per Day"
 msgstr "Ore salvate per giorno"
+
+#. module: hr_employee_calendar_planning
+#: model:ir.model.fields,field_description:hr_employee_calendar_planning.field_hr_employee__stored_is_flexible
+#: model:ir.model.fields,field_description:hr_employee_calendar_planning.field_hr_employee_base__stored_is_flexible
+#: model:ir.model.fields,field_description:hr_employee_calendar_planning.field_hr_employee_public__stored_is_flexible
+msgid "Stored Is Flexible"
+msgstr "L'accumulo è flessibile"
 
 #. module: hr_employee_calendar_planning
 #: model:ir.model.fields,help:hr_employee_calendar_planning.field_resource_calendar__flexible_hours
