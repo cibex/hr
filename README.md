@@ -23,10 +23,10 @@ Available addons
 addon | version | maintainers | summary
 --- | --- | --- | ---
 [hr_contract_reference](hr_contract_reference/) | 19.0.1.0.0 |  | HR Contract Reference
-[hr_course](hr_course/) | 19.0.1.0.1 |  | This module allows your to manage employee's training courses
+[hr_course](hr_course/) | 19.0.1.0.2 |  | This module allows your to manage employee's training courses
 [hr_department_code](hr_department_code/) | 19.0.1.0.0 |  | HR department code
 [hr_employee_age](hr_employee_age/) | 19.0.1.0.0 |  | Age field for employee
-[hr_employee_calendar_planning](hr_employee_calendar_planning/) | 19.0.1.3.2 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Employee Calendar Planning
+[hr_employee_calendar_planning](hr_employee_calendar_planning/) | 19.0.1.3.3 | <a href='https://github.com/victoralmau'><img src='https://github.com/victoralmau.png' width='32' height='32' style='border-radius:50%;' alt='victoralmau'/></a> <a href='https://github.com/pedrobaeza'><img src='https://github.com/pedrobaeza.png' width='32' height='32' style='border-radius:50%;' alt='pedrobaeza'/></a> | Employee Calendar Planning
 [hr_employee_document](hr_employee_document/) | 19.0.1.0.0 |  | Documents attached to the employee profile
 [hr_employee_firstname](hr_employee_firstname/) | 19.0.1.1.1 | <a href='https://github.com/Savoir-faire Linux'><img src='https://github.com/Savoir-faire Linux.png' width='32' height='32' style='border-radius:50%;' alt='Savoir-faire Linux'/></a> <a href='https://github.com/luisg123v'><img src='https://github.com/luisg123v.png' width='32' height='32' style='border-radius:50%;' alt='luisg123v'/></a> | Adds First Name to Employee
 [hr_employee_language](hr_employee_language/) | 19.0.1.0.1 |  | HR Employee Language
@@ -35,6 +35,7 @@ addon | version | maintainers | summary
 [hr_employee_relative](hr_employee_relative/) | 19.0.1.0.0 |  | Allows storing information about employee's family
 [hr_employee_second_lastname](hr_employee_second_lastname/) | 19.0.1.0.1 | <a href='https://github.com/luisg123v'><img src='https://github.com/luisg123v.png' width='32' height='32' style='border-radius:50%;' alt='luisg123v'/></a> | Split Name in First Name, Father's Last Name and Mother's Last Name
 [hr_job_category](hr_job_category/) | 19.0.1.0.0 |  | Adds tags to employee through contract and job position
+[hr_user_role_activity](hr_user_role_activity/) | 19.0.1.0.0 | <a href='https://github.com/CRogos'><img src='https://github.com/CRogos.png' width='32' height='32' style='border-radius:50%;' alt='CRogos'/></a> <a href='https://github.com/MohamedOsman7'><img src='https://github.com/MohamedOsman7.png' width='32' height='32' style='border-radius:50%;' alt='MohamedOsman7'/></a> | Assign user role expiration reminders to the employee's manager
 
 [//]: # (end addons)
 
